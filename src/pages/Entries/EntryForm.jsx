@@ -172,6 +172,9 @@ export default function EntryForm() {
                         style={{ width: '100%' }}
                         maxLength={150}
                         placeholder="Ej. Juan Pérez"
+                        keyfilter={/^[a-zA-Z\s'\-]*$/}
+                        tooltip="Solo se permiten letras, espacios, guiones y apóstrofes"
+                        tooltipOptions={{ position: 'bottom' }}
                     />
                     {errors.motorista && <span className="form-error">{errors.motorista}</span>}
                 </div>

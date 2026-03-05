@@ -155,6 +155,9 @@ export default function LogPage() {
                             onChange={(e) => setFilterDriver(e.target.value)}
                             placeholder="Ej. Juan Pérez"
                             style={{ width: '100%' }}
+                            keyfilter={/^[a-zA-Z\s'\-]*$/}
+                            tooltip="Solo se permiten letras, espacios, guiones y apóstrofes"
+                            tooltipOptions={{ position: 'bottom' }}
                         />
                     </div>
                 </div>

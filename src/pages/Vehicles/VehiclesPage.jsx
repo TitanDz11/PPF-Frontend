@@ -18,6 +18,8 @@ function validate(v) {
     REQUIRED.forEach((f) => { if (!v[f]?.trim()) errors[f] = 'Campo requerido.' })
     if (v.placa && !/^[A-Za-z0-9\-]+$/.test(v.placa))
         errors.placa = 'Solo letras, números y guiones.'
+    if (v.marca && !/^[a-zA-Z\s]+$/.test(v.marca))
+        errors.marca = 'Solo letras y espacios, sin números.'
     return errors
 }
 
@@ -205,6 +207,9 @@ export default function VehiclesPage() {
                             style={{ width: '100%' }}
                             maxLength={field === 'placa' ? 20 : 100}
                             placeholder={field === 'marca' ? 'Ej. Toyota, Nissan' : field === 'modelo' ? 'Ej. Corolla, Sentra' : 'Ej. ABC-1234'}
+                            keyfilter={field === 'marca' ? /^[a-zA-Z\s]*$/ : undefined}
+                            tooltip={field === 'marca' ? 'Solo se permiten letras y espacios' : undefined}
+                            tooltipOptions={{ position: 'bottom' }}
                         />
                         {errors[field] && <span className="form-error">{errors[field]}</span>}
                     </div>
