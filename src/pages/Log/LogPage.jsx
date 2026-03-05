@@ -87,6 +87,16 @@ export default function LogPage() {
         </span>
     )
 
+    const formatDate = (dateString) => {
+        if (!dateString) return ''
+        // Convert ISO date to Honduran format (DD/MM/YYYY)
+        const date = new Date(dateString)
+        const day = String(date.getDate()).padStart(2, '0')
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const year = date.getFullYear()
+        return `${day}/${month}/${year}`
+    }
+
     const actionBody = (r) => (
         <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'center' }}>
             <Button icon="pi pi-pencil" rounded text severity="info" size="small"
@@ -110,7 +120,7 @@ export default function LogPage() {
             </div>
 
             {/* Filter bar */}
-            <div className="card" style={{ marginBottom: '1rem', overflow: 'hidden' }}>
+            <div className="card" style={{ marginBottom: '1rem' }}>
                 <p className="card-title"><i className="pi pi-filter" /> Filtros</p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
                     <div className="form-group" style={{ marginBottom: 0 }}>
@@ -120,10 +130,11 @@ export default function LogPage() {
                             onChange={(e) => setFilterDate(e.value)}
                             dateFormat="yy-mm-dd"
                             showIcon
+                            icon="pi pi-calendar"
                             showButtonBar
                             style={{ width: '100%' }}
                             placeholder="Seleccione fecha"
-                            appendTo="self"
+                            inputStyle={{ borderRadius: '8px' }}
                         />
                     </div>
                     <div className="form-group" style={{ marginBottom: 0 }}>
@@ -135,7 +146,6 @@ export default function LogPage() {
                             placeholder="Todos"
                             style={{ width: '100%' }}
                             filter
-                            appendTo="self"
                         />
                     </div>
                     <div className="form-group" style={{ marginBottom: 0 }}>
@@ -174,17 +184,17 @@ export default function LogPage() {
                     dataKey="id"
                     responsiveLayout="scroll"
                     scrollable
-                    scrollWidth="100%"
+                    className="custom-datatable"
                 >
-                    <Column field="id" header="ID" sortable style={{ width: '70px' }} />
-                    <Column field="placa" header="Placa" sortable />
-                    <Column body={(r) => `${r.marca} ${r.modelo}`} header="Vehículo" sortable sortField="marca" />
-                    <Column field="motorista" header="Motorista" sortable />
-                    <Column header="Tipo" body={tipoBadge} sortable sortField="tipo" />
-                    <Column field="fecha" header="Fecha" sortable />
-                    <Column field="hora" header="Hora" />
-                    <Column field="kilometraje" header="Km" sortable body={(r) => r.kilometraje.toLocaleString('es')} />
-                    <Column header="Acciones" body={actionBody} style={{ width: '100px', textAlign: 'center' }} />
+                    <Column field="id" header="ID" sortable style={{ width: '80px', textAlign: 'center' }} />
+                    <Column field="placa" header="PLACA" sortable style={{ fontWeight: '600' }} />
+                    <Column body={(r) => `${r.marca} ${r.modelo}`} header="VEHÍCULO" sortable sortField="marca" />
+                    <Column field="motorista" header="MOTORISTA" sortable />
+                    <Column header="TIPO" body={tipoBadge} sortable sortField="tipo" style={{ textAlign: 'center' }} />
+                    <Column field="fecha" header="FECHA" sortable body={(r) => formatDate(r.fecha)} style={{ whiteSpace: 'nowrap' }} />
+                    <Column field="hora" header="HORA" style={{ textAlign: 'center', whiteSpace: 'nowrap' }} />
+                    <Column field="kilometraje" header="KM" sortable body={(r) => r.kilometraje.toLocaleString('es-HN')} style={{ textAlign: 'right' }} />
+                    <Column header="ACCIONES" body={actionBody} style={{ width: '120px', textAlign: 'center' }} />
                 </DataTable>
             </div>
         </div>

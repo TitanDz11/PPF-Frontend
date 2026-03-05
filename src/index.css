@@ -324,6 +324,7 @@ body,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+  padding: 1rem 0.875rem !important;
 }
 
 .p-datatable .p-datatable-tbody>tr {
@@ -334,6 +335,70 @@ body,
 
 .p-datatable .p-datatable-tbody>tr:hover {
   background: var(--surface-overlay) !important;
+}
+
+/* Custom DataTable styling */
+.custom-datatable .p-datatable-thead > tr > th {
+  background: linear-gradient(135deg, rgba(22, 27, 39, 0.95), rgba(28, 35, 51, 0.95)) !important;
+  border-bottom: 2px solid var(--surface-border) !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #a8b2d1 !important;
+  user-select: none;
+}
+
+.custom-datatable .p-datatable-thead > tr > th .p-column-title {
+  font-weight: 700;
+}
+
+.custom-datatable .p-sortable-column {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-datatable .p-sortable-column:hover {
+  background: rgba(108, 99, 255, 0.08) !important;
+  color: var(--accent-light) !important;
+}
+
+.custom-datatable .p-sortable-column.p-highlight {
+  background: rgba(108, 99, 255, 0.12) !important;
+  color: var(--accent-light) !important;
+}
+
+.custom-datatable .p-datatable-tbody > tr > td {
+  padding: 1.125rem 1rem !important;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--surface-border) !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-datatable .p-datatable-tbody > tr {
+  transition: all 0.2s ease;
+}
+
+.custom-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: rgba(28, 35, 51, 0.5) !important;
+}
+
+.custom-datatable .p-datatable-tbody > tr:nth-child(even):hover {
+  background: var(--surface-overlay) !important;
+}
+
+.custom-datatable .p-datatable-tbody > tr:first-child > td {
+  border-top: none !important;
+}
+
+/* Column-specific alignment */
+.custom-datatable td[style*="text-align: center"],
+.custom-datatable th[style*="text-align: center"] {
+  text-align: center !important;
+}
+
+.custom-datatable td[style*="text-align: right"],
+.custom-datatable th[style*="text-align: right"] {
+  text-align: right !important;
 }
 
 .p-dialog .p-dialog-header {
@@ -370,20 +435,26 @@ body,
   background: rgba(16, 185, 129, 0.15);
   color: var(--success);
   border: 1px solid rgba(16, 185, 129, 0.3);
-  padding: 0.2rem 0.65rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
 }
 
 .badge-salida {
   background: rgba(239, 68, 68, 0.15);
   color: var(--danger);
   border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 0.2rem 0.65rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
 }
 
 /* ── Form groups ───────────────────────────────────────────────────── */
@@ -785,6 +856,9 @@ body,
 .p-paginator {
   flex-wrap: wrap;
   justify-content: center;
+  padding: 1rem !important;
+  background: var(--surface-card) !important;
+  border-top: 1px solid var(--surface-border) !important;
 }
 
 .p-paginator .p-paginator-pages {
@@ -792,9 +866,30 @@ body,
   flex-wrap: wrap;
 }
 
+.p-paginator .p-paginator-page.p-highlight {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
+
 /* Toast responsive */
 .p-toast {
   z-index: 10000;
+}
+
+/* Action buttons in tables */
+.custom-datatable .p-button.p-button-text {
+  padding: 0.5rem 0.75rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-datatable .p-button.p-button-text:hover {
+  background: rgba(108, 99, 255, 0.1) !important;
+  transform: scale(1.05) !important;
+}
+
+.custom-datatable .p-button.p-button-danger:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
 }
 
 /* Confirm dialog responsive */
@@ -806,6 +901,12 @@ body,
 .p-dropdown-panel,
 .p-calendar-panel {
   z-index: 9999;
+}
+
+/* Fix calendar dropdown clipping in filter cards */
+.card .p-calendar,
+.card .p-dropdown {
+  position: relative;
 }
 
 /* Empty state button */
@@ -923,6 +1024,24 @@ body,
 
 .p-calendar .p-inputtext {
   padding: 0.625rem 0.875rem !important;
+}
+
+/* Calendar button styling */
+.p-calendar .p-button-icon-only {
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin-left: 4px !important;
+}
+
+.p-calendar .p-button-icon-only .p-button-icon {
+  font-size: 1rem !important;
+  margin: 0 !important;
 }
 
 /* Calendar and dropdown panel styling */
