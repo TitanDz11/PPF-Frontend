@@ -113,30 +113,37 @@ export default function LogPage() {
     const formatDate = (dateString) => {
         if (!dateString) return ''
         
-        // Handle different date formats from API
-        let year, month, day
+        // Remove time part if present (ISO format)
+        const cleanDate = dateString.split('T')[0]
         
-        if (dateString.includes('T')) {
-            // ISO format: 2026-03-26T00:00:00.000Z
-            const datePart = dateString.split('T')[0]
-            [year, month, day] = datePart.split('-')
-        } else if (dateString.includes('/')) {
-            // Already DD/MM/YYYY format
-            [day, month, year] = dateString.split('/')
+        // Split by delimiter (- or /)
+        const parts = cleanDate.split(/[-\/]/)
+        
+        if (parts.length !== 3) return dateString
+        
+        let day, month, year
+        
+        // Determine format: YYYY-MM-DD or DD/MM/YYYY
+        if (parts[0].length === 4) {
+            // YYYY-MM-DD
+            year = parts[0]
+            month = parts[1]
+            day = parts[2]
         } else {
-            // YYYY-MM-DD format
-            [year, month, day] = dateString.split('-')
+            // DD/MM/YYYY
+            day = parts[0]
+            month = parts[1]
+            year = parts[2]
         }
         
-        // Validate parsed values
-        if (!year || !month || !day || isNaN(Number(year))) {
-            return dateString
-        }
+        // Validate
+        const y = parseInt(year, 10)
+        const m = parseInt(month, 10)
+        const d = parseInt(day, 10)
         
-        const d = String(Number(day)).padStart(2, '0')
-        const m = String(Number(month)).padStart(2, '0')
-        const y = Number(year)
-        return `${d}/${m}/${y}`
+        if (isNaN(y) || isNaN(m) || isNaN(d)) return dateString
+        
+        return `${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}/${y}`
     }
 
     const actionBody = (r) => (
