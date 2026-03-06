@@ -12,7 +12,9 @@ export default function Dashboard() {
     useEffect(() => {
         async function load() {
             try {
-                const today = new Date().toISOString().split('T')[0]
+                // Format today's date as YYYY-MM-DD using local timezone (not UTC)
+                const now = new Date()
+                const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
                 const [vRes, eRes, tRes] = await Promise.all([
                     getVehicles(),
                     getEntries(),

@@ -27,8 +27,11 @@ export default function LogPage() {
     const buildParams = useCallback(() => {
         const p = {}
         if (filterDate) {
-            // Ensure date format is YYYY-MM-DD
-            const dateStr = filterDate.toISOString().split('T')[0]
+            // Format date as YYYY-MM-DD using local timezone (not UTC)
+            const year = filterDate.getFullYear()
+            const month = String(filterDate.getMonth() + 1).padStart(2, '0')
+            const day = String(filterDate.getDate()).padStart(2, '0')
+            const dateStr = `${year}-${month}-${day}`
             if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
                 p.fecha = dateStr
             }
