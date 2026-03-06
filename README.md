@@ -2,7 +2,7 @@
 
 Aplicación web moderna desarrollada con React.js para la gestión de vehículos y registro de entradas/salidas de una flota vehicular.
 
-## 📋 Descripción
+## Descripción
 
 Esta aplicación frontend proporciona una interfaz intuitiva y moderna para:
 - Registrar y gestionar vehículos (CRUD completo)
@@ -11,7 +11,7 @@ Esta aplicación frontend proporciona una interfaz intuitiva y moderna para:
 - Visualizar historial completo de movimientos
 - Interfaz responsive y atractiva con PrimeReact
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 ### Tecnologías Principales
 - **React.js** 18.3.1 - Biblioteca UI
@@ -30,7 +30,7 @@ Esta aplicación frontend proporciona una interfaz intuitiva y moderna para:
 - TypeScript types para React
 - Hot Module Replacement (HMR)
 
-## 📦 Instalación
+## Instalación
 
 ### Requisitos Previos
 - Node.js >= 20.x instalado
@@ -67,7 +67,7 @@ npm run dev
 
 La aplicación estará disponible en: `http://localhost:3000`
 
-## 🚀 Ejecución
+## Ejecución
 
 ### Modo Desarrollo (con hot-reload)
 ```bash
@@ -86,7 +86,7 @@ El build se genera en la carpeta `dist/`
 npm run preview
 ```
 
-## 🎨 Características de la Interfaz
+## Características de la Interfaz
 
 ### Diseño Moderno
 - **Tema oscuro** profesional
@@ -106,7 +106,7 @@ npm run preview
 - Tooltips informativos
 - Mensajes de error claros
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 PPF-Frontend/
@@ -139,7 +139,7 @@ PPF-Frontend/
 └── nginx.conf                    # Configuración nginx (producción)
 ```
 
-## 🗺️ Rutas de la Aplicación
+## Rutas de la Aplicación
 
 | Ruta | Componente | Descripción |
 |------|------------|-------------|
@@ -149,7 +149,7 @@ PPF-Frontend/
 | `/entries/:id/edit` | `EntryForm` | Editar entrada/salida |
 | `/log` | `LogPage` | Historial de movimientos con filtros |
 
-## 🔌 Conexión con el Backend
+## Conexión con el Backend
 
 ### Configuración de Axios
 
@@ -203,7 +203,7 @@ updateEntry(id, data)
 deleteEntry(id)
 ```
 
-## 📱 Páginas y Funcionalidades
+## Páginas y Funcionalidades
 
 ### 1. Dashboard
 **Ubicación:** `/`
@@ -266,7 +266,7 @@ deleteEntry(id)
 
 **Componente:** `src/pages/Log/LogPage.jsx`
 
-## 🎨 Sistema de Diseño
+## Sistema de Diseño
 
 ### Paleta de Colores
 
@@ -315,7 +315,7 @@ deleteEntry(id)
 - Iconos centrados
 - Sizes: small, medium, large
 
-## 🔧 Hooks Personalizados
+## Hooks Personalizados
 
 ### useDebounce
 
@@ -331,7 +331,7 @@ const debouncedFilter = useDebounce(filter, 300);
 // debouncedFilter se actualiza 300ms después del último cambio
 ```
 
-## ⚙️ Configuración de Vite
+## Configuración de Vite
 
 **Archivo:** `vite.config.js`
 
@@ -353,7 +353,7 @@ export default defineConfig({
 })
 ```
 
-## 🐳 Docker
+## Docker
 
 ### Build y Ejecución con Docker
 
@@ -398,7 +398,7 @@ Esto iniciará:
 - Backend en `http://localhost:4000`
 - MySQL en puerto 3307
 
-## 🚀 Despliegue
+## Despliegue
 
 ### Vercel (Recomendado)
 
@@ -443,7 +443,7 @@ VITE_API_URL=https://api.tudominio.com/api
 - Configurar proxy reverso (nginx)
 - Habilitar compresión gzip
 
-## 🧪 Testing
+## Testing
 
 *(Tests en desarrollo)*
 
@@ -452,7 +452,7 @@ Ejecutar tests:
 npm test
 ```
 
-## 📊 Métricas de Rendimiento
+## Métricas de Rendimiento
 
 ### Bundle Size
 - **Total:** ~150KB (gzip)
@@ -465,7 +465,7 @@ npm test
 - **Time to Interactive:** < 2s
 - **Lighthouse Score:** 90+
 
-## 🔧 Solución de Problemas
+## Solución de Problemas
 
 ### Error: "Cannot GET /"
 
@@ -521,7 +521,7 @@ location / {
 - Revisar que PrimeReact esté importado
 - Verificar que los estilos estén en `main.jsx`
 
-## 🎯 Mejores Prácticas Implementadas
+## Mejores Prácticas Implementadas
 
 ### Código
 - ✅ Componentes funcionales con hooks
@@ -542,7 +542,7 @@ location / {
 - ✅ Debounce en búsquedas
 - ✅ Optimización de renders
 
-## 📁 Archivos Importantes
+## Archivos Importantes
 
 ### `src/main.jsx`
 Punto de entrada de la aplicación. Configura PrimeReact y renderiza el root component.
@@ -556,7 +556,7 @@ Estilos globales, temas, y overrides de PrimeReact. Contiene todo el sistema de 
 ### `src/api/axios.js`
 Configuración del cliente HTTP. Maneja la conexión con el backend.
 
-## 🔗 Dependencias vs DevDependencies
+## Dependencias vs DevDependencies
 
 ### Dependencies (Producción)
 - `react` + `react-dom` - Core de React
@@ -569,22 +569,11 @@ Configuración del cliente HTTP. Maneja la conexión con el backend.
 - `@vitejs/plugin-react` - Plugin de React
 - `@types/react` - Types para React
 
-## 📞 Soporte
 
-Para reportar bugs o solicitar características:
-- Abrir un issue en el repositorio
-- Contactar al equipo de desarrollo
-
-## 📄 Licencia
-
-Este proyecto es propiedad de la empresa y su uso está restringido a fines internos.
-
----
-
-## 👥 Equipo de Desarrollo
+## Desarrollado por Ethan Diaz
 
 Desarrollado para la prueba técnica de desarrollo web full-stack.
 
 **Tecnologías:** React, Vite, PrimeReact, React Router, Axios
 
-**Año:** 2024
+**Año:** 2026

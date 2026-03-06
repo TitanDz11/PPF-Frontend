@@ -26,9 +26,29 @@ export default function LogPage() {
 
     const buildParams = useCallback(() => {
         const p = {}
-        if (filterDate) p.fecha = filterDate.toISOString().split('T')[0]
-        if (filterVehicle) p.vehicle_id = filterVehicle
-        if (filterDriver.trim()) p.motorista = filterDriver.trim()
+        if (filterDate) {
+            // Ensure date format is YYYY-MM-DD
+            const dateStr = filterDate.toISOString().split('T')[0]
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                p.fecha = dateStr
+            }
+        }
+        if (filterVehicle) {
+            // Ensure vehicle_id is numeric
+            const vehicleId = Number(filterVehicle)
+            if (!isNaN(vehicleId) && vehicleId > 0) {
+                p.vehicle_id = vehicleId.toString()
+            }
+        }
+        if (filterDriver && filterDriver.trim()) {
+            // Sanitize motorista - remove special SQL characters and limit length
+            const sanitized = filterDriver.trim()
+                .replace(/['";\\]/g, '')
+                .substring(0, 150)
+            if (sanitized) {
+                p.motorista = sanitized
+            }
+        }
         return p
     }, [filterDate, filterVehicle, filterDriver])
 
