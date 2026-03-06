@@ -112,13 +112,30 @@ export default function LogPage() {
 
     const formatDate = (dateString) => {
         if (!dateString) return ''
-        // Parse date string correctly in local timezone (not UTC)
-        // Expected input format from API: YYYY-MM-DD
-        const [year, month, day] = dateString.split('-')
-        const date = new Date(Number(year), Number(month) - 1, Number(day))
-        const d = String(date.getDate()).padStart(2, '0')
-        const m = String(date.getMonth() + 1).padStart(2, '0')
-        const y = date.getFullYear()
+        
+        // Handle different date formats from API
+        let year, month, day
+        
+        if (dateString.includes('T')) {
+            // ISO format: 2026-03-26T00:00:00.000Z
+            const datePart = dateString.split('T')[0]
+            [year, month, day] = datePart.split('-')
+        } else if (dateString.includes('/')) {
+            // Already DD/MM/YYYY format
+            [day, month, year] = dateString.split('/')
+        } else {
+            // YYYY-MM-DD format
+            [year, month, day] = dateString.split('-')
+        }
+        
+        // Validate parsed values
+        if (!year || !month || !day || isNaN(Number(year))) {
+            return dateString
+        }
+        
+        const d = String(Number(day)).padStart(2, '0')
+        const m = String(Number(month)).padStart(2, '0')
+        const y = Number(year)
         return `${d}/${m}/${y}`
     }
 
