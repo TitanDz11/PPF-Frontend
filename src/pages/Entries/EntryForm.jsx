@@ -44,7 +44,11 @@ function toTimeStr(dateObj) {
 
 function toDateStr(dateObj) {
     if (!dateObj) return ''
-    return dateObj.toISOString().split('T')[0]
+    // Format date as YYYY-MM-DD using local timezone (not UTC)
+    const year = dateObj.getFullYear()
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+    const day = String(dateObj.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
 }
 
 export default function EntryForm() {
@@ -75,7 +79,11 @@ export default function EntryForm() {
                     vehicle_id: e.vehicle_id,
                     motorista: e.motorista,
                     tipo: e.tipo,
-                    fecha: new Date(e.fecha + 'T00:00:00'),
+                    // Parse date in local timezone
+                    fecha: (() => {
+                        const [y, m, d] = e.fecha.split('-')
+                        return new Date(Number(y), Number(m) - 1, Number(d))
+                    })(),
                     hora: (() => { const [h, m] = e.hora.split(':'); const d = new Date(); d.setHours(Number(h), Number(m)); return d })(),
                     kilometraje: String(e.kilometraje),
                 })

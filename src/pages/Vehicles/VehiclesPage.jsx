@@ -177,7 +177,13 @@ export default function VehiclesPage() {
                         field="created_at"
                         header="Registrado"
                         sortable
-                        body={(r) => new Date(r.created_at).toLocaleDateString('es')}
+                        body={(r) => {
+                            // Parse datetime in local timezone
+                            const dt = r.created_at.replace(' ', 'T')
+                            const [y, m, d] = dt.split('T')[0].split('-')
+                            const date = new Date(Number(y), Number(m) - 1, Number(d))
+                            return date.toLocaleDateString('es')
+                        }}
                     />
                     <Column header="Acciones" body={actionBody} style={{ width: '100px', textAlign: 'center' }} />
                 </DataTable>
